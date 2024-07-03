@@ -1,0 +1,78 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": "/"
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Actual Server"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/v1/organizations": {
+      "get": {
+        "tags": [
+          "organizations"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Test endpoint",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.example.plugins.PagedResponse<com.example.plugins.Organization>"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Map(String,String)": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "com.example.plugins.PagedResponse<com.example.plugins.Organization>": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Organization"
+            }
+          },
+          "options": {
+            "$ref": "#/components/schemas/Map(String,String)"
+          }
+        }
+      }
+    },
+    "examples": {}
+  }
+}
